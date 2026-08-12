@@ -159,7 +159,7 @@ def main():
                         help='Number of training epochs')
 
     parser.add_argument('--dataset', required=True,
-                        choices=['one', 'rtos'],
+                        choices=['one', 'rtos', 'aiforre'],
                         help='Choose the dataset to use for the train or test')
 
     parser.add_argument('--config', required=True,

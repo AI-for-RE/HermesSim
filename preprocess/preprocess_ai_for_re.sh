@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DATASET_NAME=${DATASET_NAME:-'AI-For-RE'}
+FEAT=${FEAT:-'pcode_raw'}
+DBDIR=${DBDIR:-'dbs'}
+OUTDIR=${OUTDIR:-'inputs/pcode'}
+
+echo "Processing ${DATASET_NAME}"
+python preprocess/preprocessing_pcode.py \
+    --training \
+    --freq-mode -f pkl -s ${DATASET_NAME} \
+    -i $DBDIR/$DATASET_NAME/features/"$FEAT"_${DATASET_NAME} \
+    -o $OUTDIR
