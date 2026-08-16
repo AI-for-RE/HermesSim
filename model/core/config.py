@@ -167,18 +167,18 @@ def update_config_datasetrtos(config_dict, inputdir, outputdir, featuresdir, fea
             feature_json_name)
     )
 
-def update_config_aiforre(config_dict, inputdir, outputdir, featuresdir, feature_json_name):
-    """Config for AI-For-RE datasets/experiments."""
-    testdir = os.path.join(inputdir, "AI-For-RE")
+def update_config_embedding(config_dict, outputdir, featuresdir, feature_json_name, summary_file):
+    """Config for embedding-only experiments."""
+    summary_name = os.path.basename(summary_file).replace(".csv","")
     config_dict['testing'] = dict(
         infer_tasks=[
             (
-                os.path.join(testdir, "AI-For-RE.csv"),
-                os.path.join(outputdir, "AI-For-RE.pkl"),
+                summary_file,
+                os.path.join(outputdir, summary_name, summary_name+".pkl"),
             )
         ],
         features_testing_path=os.path.join(
-            featuresdir, 'AI-For-RE',
+            featuresdir, f'AI-For-RE_{summary_name}',
             feature_json_name)
     )
 
@@ -335,9 +335,9 @@ def update_config(config_dict, args):
     elif args.dataset == 'rtos':
         update_config_datasetrtos(
             config_dict, args.inputdir, args.outputdir, args.featuresdir, args.feature_json_name)
-    elif args.dataset == 'aiforre':
-        update_config_aiforre(
-            config_dict, args.inputdir, args.outputdir, args.featuresdir, args.feature_json_name
+    elif args.dataset == 'embedding':
+        update_config_embedding(
+            config_dict, args.outputdir, args.featuresdir, args.feature_json_name, args.summary_file
         )
 
     if args.device is not None:

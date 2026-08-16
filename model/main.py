@@ -159,7 +159,7 @@ def main():
                         help='Number of training epochs')
 
     parser.add_argument('--dataset', required=True,
-                        choices=['one', 'rtos', 'aiforre'],
+                        choices=['one', 'rtos', 'embedding'],
                         help='Choose the dataset to use for the train or test')
 
     parser.add_argument('--config', required=True,
@@ -173,6 +173,8 @@ def main():
 
     parser.add_argument('-o', '--outputdir', required=False, default=None,
                         help='Output dir')
+
+    parser.add_argument('--summary_file', required=False, default=None, help="Summary file for AI-For-RE training/inference.")
 
     args = parser.parse_args()
 
@@ -192,6 +194,9 @@ def main():
         if testing:
             model_test(gnn_model, args.test_outdir)
         else:
+            if args.dataset == "embedding":
+                print("ERROR: Dataset 'embedding' cannot be used for training. Please set 'is_testing' to true in your config.")
+                return
             model_train(gnn_model, config, desc)
 
 

@@ -51,7 +51,10 @@
         },
         "args": {
             "feature_json_name": "graph_func_dict_opc_True.json",
-            "featuresdir": "./inputs/pcode/pcode_sog"
-        }
+            "featuresdir": "inputs/pcode/pcode_sog",
+            "outputdir": "outputs/output_Dataset-1_run-1",
+            "summary_file": "dbs/AI-For-RE/libpng_versions_testing/libpng_versions_testing.csv"
+        },
+        "is_testing": true
     }
 }
